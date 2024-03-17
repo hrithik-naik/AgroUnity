@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/styles/login.css">
+    <link href="https://unpkg.com/tailwindcss@%5E2.0/dist/tailwind.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="/images/logonobg.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+    <style>
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Disable href tags highlight */
+        a {
+            text-decoration: none;
+            color: inherit;
+            outline: none;
+        }
+
+        /* Optionally, you can add a custom hover effect */
+        a:hover {
+            color: green;
+        }
+
+        /* Navbar styles */
+
+        /* Content styles */
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .user-list-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .search-bar {
+            width: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            margin-top:100px;
+            height: 100px;
+        }
+
+        .search-input {
+            flex: 1; /* This will make the input take up remaining space */
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px 0 0 5px;
+            box-sizing: border-box;
+        }
+
+        .search-button {
+            margin-top:5px;
+            display: block; /* Ensure the button occupies its own line */
+            width: 100px;
+            padding: 8px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 20px; /* Adjust border-radius to make the button curved */
+            cursor: pointer;
+            height: 38px; /* Adjust the height to match the input box */
+            margin: 0 auto; /* Align the button to the center horizontally */
+        }
+        
+        
+        
+
+        .search-button:hover {
+            background-color: #45a049;
+        }
+
+        .user-list {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .user-item {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            width: calc(25% - 20px);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .user-item:hover {
+            background-color: #e0e0e0;
+            transform: scale(1.05);
+        }
+
+        .user-details {
+            margin-bottom: 10px;
+        }
+
+        .user-image {
+            max-width: 100px;
+            max-height: 100px;
+            margin-bottom: 10px;
+        }
+        .button-container {
+            display: flex; /* Use flexbox */
+            align-items: center; /* Align items vertically */
+            float: right;
+            margin-right:20px; /* Float the container to the right */
+        }
+        .button-containers{
+            display: flex; /* Use flexbox */
+            align-items: center; /* Align items vertically */
+            float:left;
+            margin-left:20px;
+        }
+        .Createbutton{
+            margin-top:100px;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            
+        }
+        
+       
+        .profile-image {
+            width: 50px; /* Adjust the width of the image */
+            height: 50px; /* Adjust the height of the image */
+            margin-left:20px;
+            margin-top:100px /* Add some space between the button and the image */
+        }
+        
+        .profile-image:hover {
+            cursor: pointer;
+        }
+
+        /* Media query for three items per row on smaller screens */
+        @media (max-width: 768px) {
+            .user-item {
+                width: calc(33.33% - 20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="flex items-center justify-between py-4 px-6 bg-white shadow fixed top-0 w-full z-10">
+        <div>
+            <a href="/home"><img src="/images/logonobg.png" alt="Logo" class="h-8"></a>
+        </div>
+        <div>
+            <ul class="flex space-x-6">
+                <li><a href="/home" class="text-gray-700 hover:text-gray-700">Home</a></li>
+                <li><a href="/about" class="text-gray-700 hover:text-blue-600">About</a></li>
+                <li><a href="/product" class="text-blue-600 hover:text-blue-600">Products</a></li>
+                <li><a href="/blog" class="text-gray-700 hover:text-blue-600">Blog</a></li>
+                <li><a href="/profile" class="text-gray-700 hover:text-blue-600">Profile</a></li>
+                <li><a href="/contactus" class="text-gray-700 hover:text-blue-600">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="button-container">
+        
+        <a href="/profile"><img src="/images/user.png" alt="Profile Image" class="profile-image"></a>
+    </div>
+    <div class="button-containers">
+        <a href="/listingcreation" class="Createbutton">+Create</a>
+    </div>
+    
+    <div class="user-list-container">
+        <div class="search-bar">
+            <form method="POST" action="/product" style="width: 100%;">
+                <input type="text" class="search-input" placeholder="Search by product names" name="prod">
+                <button type="submit" class="search-button">Search</button>
+            </form>
+        </div>
+    </div>
+    
+
+        <h1>Current Listings</h1>
+
+        <ul class="user-list">
+            <% users.forEach(user => { %>
+                <li class="user-item">
+                    <a href="/product/<%= user._id %>">
+                        <div class="user-details">
+                            <strong>Email:</strong> <%= user.email %><br>
+                            <strong>Product Name:</strong> <%= user.productname %><br>
+                            <strong>Product Address:</strong> <%= user.productaddress %><br>
+                            <strong>Product Description:</strong> <%= user.productdescription %><br>
+                        </div>
+                        <% if (user.productimage && user.productimage.data) { %>
+                            <img src="data:image/<%= user.productimage.contentType %>;base64,<%= user.productimage.data.toString('base64') %>" class="user-image">
+                        <% } %>
+                    </a>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+    <footer class="relative bg-blueGray-200 pt-8 pb-6">
+        <div class="container mx-auto px-4">
+          <div class="flex flex-wrap text-left lg:text-left">
+            <div class="w-full lg:w-6/12 px-4">
+              <h4 class="text-3xl fonat-semibold text-blueGray-700">Let's keep in touch!</h4>
+              <h5 class="text-lg mt-0 mb-2 text-blueGray-600">
+                Find us on any of these platforms, we respond 1-2 business days.
+              </h5>
+              <div class="mt-6 lg:mb-0 mb-6">
+                  <a href="https://www.instagram.com/" target="_blank" rel="nofollow">
+                <button class="bg-white shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+                  <i class="fab fa-instagram"></i></button></a>
+                  <a href="https://www.facebook.com/" target="_blank" rel="nofollow">
+                  <button class="bg-white shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+                  <i class="fab fa-facebook-square"></i></button></a>
+                  <a href="https://in.linkedin.com/" target="_blank" rel="nofollow">
+                  <button class="bg-white shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+                  <i class="fab fa-linkedin-in"></i></button></a>
+                  <a href="https://twitter.com/" target="_blank" rel="nofollow">
+                  <button class="bg-white shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+                  <i class="fab fa-twitter"></i>
+                </button></a>
+              </div>
+            </div>
+            <div class="w-full lg:w-6/12 px-4">
+              <div class="flex flex-wrap items-top mb-6">
+                <div class="w-full lg:w-4/12 px-4 ml-auto">
+                  <span class="block uppercase text-blueGray-500 text-sm font-semibold mb-2">Useful Links</span>
+                  <ul class="list-unstyled">
+                    <li>
+                      <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="/about">About Us</a>
+                    </li>
+                    <li>
+                      <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="/product">Our Products</a>
+                    </li>
+                    <li>
+                      <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="/blog">Blog</a>
+                    </li>
+                    <li>
+                      <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="/login">Login</a>
+                    </li>
+                    <li>
+                      <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="/contactus">Contact Us</a>
+                    </li>
+                  </ul>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          <hr class="my-6 border-blueGray-300">
+          <div class="flex flex-wrap items-center md:justify-between justify-center">
+            <div class="w-full md:w-4/12 px-4 mx-auto text-center">
+              <div class="text-sm text-blueGray-500 font-semibold py-1">
+                Copyright © <span id="get-current-year">2024</span><a href="homepage.html" class="text-blueGray-500 hover:text-gray-800" target="_blank"> AgroUnity
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+      
+</body>
+</html>

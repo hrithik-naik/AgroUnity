@@ -1,0 +1,153 @@
+body {
+	margin: 0;
+	font-family: "Arial", sans-serif;
+}
+
+.navbar {
+	background-color: #4caf50; /* Green background color, you can change it */
+	padding: 15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.logo {
+	width: 50px; /* Adjust the logo width */
+	height: 50px; /* Adjust the logo height */
+	object-fit: cover;
+	margin-right: 15px;
+}
+
+.nav-items {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+
+.nav-item {
+	margin-right: 15px;
+}
+
+.nav-item:last-child {
+	margin-right: 0;
+}
+.lab{
+  align-items: center;
+  text-align: center;
+}
+.nav-link {
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+	font-size: 16px;
+}
+form{
+	width:600px;
+	margin: 0 auto;
+}
+.container {
+	width: 400px;
+	border-radius: 1%;
+	padding: 16px;
+	background-color: white;
+	margin: 0 auto;
+	margin-top: 50px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.signup{
+    text-align: center;
+    margin-top: 25px;
+	text-decoration: underline;
+  }
+
+label {
+	display: block;
+	margin-top: 20px;
+}
+.texts {
+	width: 100%;
+	padding: 10px;
+	margin-top: 5px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	box-sizing: border-box;
+}
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="textarea"] {
+	width: 100%;
+	padding: 10px;
+	margin-top: 5px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	box-sizing: border-box;
+}
+
+input[type="submit"] {
+	width: 100%;
+	padding: 10px;
+	background-color: #4caf50;
+	color: white;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+}
+.btn {
+	width: 100%;
+	padding: 16px;
+	border-radius: 25px;
+	background-color: lightgreen;
+	margin: 0 auto;
+	margin-top: 25px;
+	border-color: black;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.btn:hover {
+	background-color: darkgreen;
+	color: white;
+	border-color: yellow;
+}
+input[type="submit"]:hover {
+	background-color: #45a049;
+}
+
+.cancelbtn {
+	width: 100%;
+	padding: 10px;
+	background-color: #f44336;
+	color: white;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	float: left;
+}
+
+.cancelbtn:hover {
+	background-color: #da190b;
+}
+
+.psw {
+	float: right;
+	padding-top: 10px;
+}
+.newuser {
+	color: inherit; /* Use the default text color */
+	text-decoration: none; /* Remove underline */
+	transition: color 0.1s;
+}
+.newuser:hover {
+	color: green;
+	text-decoration: underline;
+}
+
+/* Responsive layout - makes the menu visible on tablets and mobile devices */
+@media screen and (max-width: 600px) {
+	.cancelbtn,
+	.psw {
+		float: none;
+		display: block;
+		text-align: left;
+	}
+}

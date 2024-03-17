@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@%5E2.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/images/logonobg.png">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/styles/navbar.css">
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            width:700px;
+            align-items: center;
+            overflow-wrap:anywhere;
+        }
+        .logout{
+            float:right;
+            margin-right:30px;
+            padding: 8px;
+            border: none;
+            background-color:lightcoral;
+           
+            color: white;
+            border-radius:10px;
+            cursor: pointer;
+        }
+        .logout:hover{
+            background-color:red;
+        }
+        
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px 0 0 5px;
+            box-sizing: border-box;
+        }
+
+        .search-button {
+            padding: 8px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .a:hover{
+            transform: scale(1.1); 
+        }
+
+        /* Adjustments to the flex container */
+        .flex-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="flex items-center justify-between py-4 px-6 bg-white shadow fixed top-0 w-full z-10">
+        <div>
+            <a href="homepage.html"><img src="/images/logonobg.png" alt="Logo" class="h-8"></a>
+        </div>
+        <div>
+            <ul class="flex space-x-6">
+                <li><a href="/home" class="text-gray-700 hover:text-gray-700">Home</a></li>
+                <li><a href="/about" class="text-gray-700 hover:text-blue-600">About</a></li>
+                <li><a href="/product" class="text-gray-700 hover:text-blue-600">Products</a></li>
+                <li><a href="/blog" class="text-gray-700 hover:text-blue-600">Blog</a></li>
+                <li><a href="/profile" class="text-blue-700 hover:text-blue-600">Profile</a></li>
+                <li><a href="/contactus" class="text-gray-700 hover:text-blue-600">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+    <form method="POST" action="/profile">
+    <button class="logout" id="logoutButton" name="logout">LOGOUT</button>
+    </form>
+    <script>
+        document.getElementById("logoutButton").addEventListener("click", function() {
+            alert("Succesfully Logged out");
+            window.location.href = "/login"; 
+        });
+    </script>
+    <div class="container">
+        <h1>User Profile</h1>
+        <div class="profile-info">
+            <p><strong>Username:</strong> <%= users.username %></p>
+            <p><strong>GSTIN:</strong> <%= users.gstin %></p>
+            <p><strong>Email:</strong> <%= users.email %></p>
+        </div>
+        
+        <div class="flex-container">
+            <a href="/listingcreation" class="btn">Create Listing</a>
+            <a href="/product/#" class="btn">View Listing</a>
+            
+            
+            <div class="search-container">
+                <form method="POST" action="/profile">
+                    <input type="text" class="search-input" placeholder="search by product names" name="prod">
+                    <button type="submit" class="search-button">Search</button>
+                </form>
+            </div>
+        </div>
+
+        <p>Your Listings</p>
+        <% product.forEach(prod => { %>
+            <a href="/profile/<%= prod._id %>">
+            <div class="product-details">
+                <p><strong>ID:</strong> <%= prod._id %></p>
+                <p><strong>Email:</strong> <%= prod.email %></p>
+                <p><strong>Product Name:</strong> <%= prod.productname %></p>
+                <p><strong>Product Address:</strong> <%= prod.productaddress %></p>
+                <p><strong>Product Description:</strong> <%= prod.productdescription %></p>
+                <p><strong>Price:</strong> <%= prod.price %></p>
+            </div>
+            <% if (prod.productimage && prod.productimage.data) { %>
+                <img src="data:image/<%= prod.productimage.contentType %>;base64,<%= prod.productimage.data.toString('base64') %>" alt="Product Image" width="100px" height="100px">
+            <% } %>
+        <% }); %>
+        </a>
+    </div>
+</body>
+</html>

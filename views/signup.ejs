@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+	<link rel="stylesheet" href="/styles/login.css" />
+  <link href="https://unpkg.com/tailwindcss@%5E2.0/dist/tailwind.min.css" rel="stylesheet">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/x-icon" href="/images/logonobg.png">
+		<title>Sign in</title>
+	</head>
+
+	<body>
+		<% if (locals.showAlerts) { %>
+		<script>
+			window.onload = function () {
+				alert(
+					"Password should be formatted properly with at least one uppercase letter, one special character, and be at least 8 characters long.",
+				);
+			};
+		</script>
+		<% } %> 
+    <% if (locals.showAlertss) { %>
+		<script>
+			window.onload = function () {
+				alert("Incorrect format GSTIN");
+			};
+		</script>
+		<% } %>
+		<nav
+			class="flex items-center justify-between py-4 px-6 bg-white shadow fixed top-0 w-full z-10"
+		>
+			<div>
+				<a href="homepage.html"
+					><img src="/images/logonobg.png" alt="Logo" class="h-8"
+				/></a>
+			</div>
+			<div>
+				<ul class="flex space-x-6">
+					<li><a href="/home" class="text-blue-600 hover:text-gray-700">Home</a></li>
+            	<li><a href="/about" class="text-gray-700 hover:text-blue-600">About</a></li>
+            	<li><a href="/product" class="text-gray-700 hover:text-blue-600">Products</a></li>
+            	<li><a href="/blog" class="text-gray-700 hover:text-blue-600">Blog</a></li>
+            	<li><a href="/login" class="text-gray-700 hover:text-blue-600">Login</a></li>
+            	<li><a href="/contactus" class="text-gray-700 hover:text-blue-600">Contact Us</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<form method="POST" action="/signup" style="margin-top:100px;">
+			<div class="container">
+				<label for="uname"><b>GSTIN</b></label>
+				<input type="password" placeholder="Enter Password" name="gstin" required />
+				<br />
+				<label for="uname"><b>Username</b></label>
+				<input type="text" placeholder="Enter Username" name="uname" required/>
+				<br />
+				<label for="uname"><b>Email</b></label>
+				<input type="email" placeholder="Enter email" name="email" required/>
+
+				<label for="psw"><b>Password</b></label>
+				<input type="password" placeholder="Enter Password" name="password" required />
+				<br />
+				<button type="submit" class="btn">Sign up</button>
+				<label>
+					
+				</label>
+			</div>
+		</form>
+	</body>
+</html>

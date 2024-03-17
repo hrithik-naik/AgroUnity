@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/styles/login.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/images/logonobg.png">
+
+  <link href="https://unpkg.com/tailwindcss@%5E2.0/dist/tailwind.min.css" rel="stylesheet">
+  <title>Login</title>
+  <style>
+</style>
+</head>
+<style>
+  .signup{
+    text-align: center;
+    margin-top: 25px;
+  }
+</style>
+<body>
+  <% if (locals.showAlerts) { %>
+    <script>
+        window.onload = function() {
+          alert('Wrong password');
+
+        };
+    </script>
+  <% } %>
+
+  <nav
+  class="flex items-center justify-between py-4 px-6 bg-white shadow fixed top-0 w-full z-10"
+>
+  <div>
+    <a href="/home"
+      ><img src="/images/logonobg.png" alt="Logo" class="h-8"
+    /></a>
+  </div>
+  <div>
+    <ul class="flex space-x-6">
+      <li><a href="/home" class="text-gray-700  hover:text-gray-700">Home</a></li>
+            <li><a href="/about" class="text-gray-700 hover:text-blue-600">About</a></li>
+            <li><a href="/product" class="text-gray-700 hover:text-blue-600">Products</a></li>
+            <li><a href="/blog" class="text-gray-700 hover:text-blue-600">Blog</a></li>
+            <li><a href="/login" class="text-blue-600 hover:text-blue-600">Login</a></li>
+            <li><a href="/contactus" class="text-gray-700 hover:text-blue-600">Contact Us</a></li>
+    </ul>
+  </div>
+</nav>
+<form method="POST" action="/login" style="margin-top:100px">
+    <div class="container">
+    <label for="uname"><b>Email</b></label>
+    <input type="email" placeholder="Enter email" name="email" required>
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" required>
+    <a href="/signup" class="signup">New User?</a>
+    <button type="submit" class="btn">Log in</button>
+</form>
+   
+  
+    
+
+</body>
+</html>

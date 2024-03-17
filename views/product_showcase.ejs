@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/navbar.css">
+    <link href="https://unpkg.com/tailwindcss@%5E2.0/dist/tailwind.min.css" rel="stylesheet">
+    <title><%= product.productname %> Showcase</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            text-transform: capitalize;
+            font-size: 45px;
+            text-align: center; /* Center align the text */
+            margin-top: 100px; /* Move the heading below the navigation */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-details {
+            margin-top: 20px; /* Reduce margin-top */
+            padding: 10px;
+            border-top: 1px solid #ccc;
+        }
+
+        .product-details strong {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            margin: 0 auto;
+        }
+        .back{
+            margin-top: 100px;
+            float:left;
+            margin-left:25px;
+            background:green;
+            
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        footer{
+            text-align: center;
+        }
+    </style>
+</head>
+<script>
+    document.getElementById("back").addEventListener("click", function() {
+        
+        window.location.href = "/product"; 
+    });
+</script>
+<body>
+    <nav class="flex items-center justify-between py-4 px-6 bg-white shadow fixed top-0 w-full z-10">
+        <div>
+            <a href="/home"><img src="/images/logonobg.png" alt="Logo" class="h-8"></a>
+        </div>
+        <div>
+            <ul class="flex space-x-6">
+                <li><a href="/home" class="text-blue-600 hover:text-gray-700">Home</a></li>
+                <li><a href="/about" class="text-gray-700 hover:text-blue-600">About</a></li>
+                <li><a href="/product" class="text-gray-700 hover:text-blue-600">Products</a></li>
+                <li><a href="/blog" class="text-gray-700 hover:text-blue-600">Blog</a></li>
+                <li><a href="/login" class="text-gray-700 hover:text-blue-600">Login</a></li>
+                <li><a href="/contactus" class="text-gray-700 hover:text-blue-600">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+    <button class="back" id="back">Back to Products</button>
+    <script>
+        document.getElementById("back").addEventListener("click", function() {
+            
+            window.location.href = "/product"; 
+        });
+    </script>
+    <div class="container">
+        <h1 class="main"><%= product.productname %> Showcase</h1>
+        <div class="product-details">
+            <p><strong>Email:</strong> <%= product.email %></p>
+            <p><strong>Product Name:</strong> <%= product.productname %></p>
+            <p><strong>Product Address:</strong> <%= product.productaddress %></p>
+            <p><strong>Product Description:</strong> <%= product.productdescription %></p>
+            <p><strong>Price</strong> <%= product.price %>/day</p>
+            <p><strong>Rating</strong> <%= product.rating %>/5</p>
+            
+        </div>
+        <% if (product.productimage && product.productimage.data) { %>
+            <img src="data:image/<%= product.productimage.contentType %>;base64,<%= product.productimage.data.toString('base64') %>" alt="Product Image">
+        <% } %>
+    </div>
+    <footer >
+        <div class="text-sm text-blueGray-500 font-semibold py-1">
+            Copyright © <span id="get-current-year">2024</span><a href="homepage.html" class="text-blueGray-500 hover:text-gray-800" target="_blank"> AgroUnity
+          </div>
+    </footer>
+</body>
+</html>

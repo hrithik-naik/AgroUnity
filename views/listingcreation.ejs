@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" href="/styles/login.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@%5E2.0/dist/tailwind.min.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+  
+  <nav class="flex items-center justify-between py-4 px-6 bg-white shadow fixed top-0 w-full z-10">
+    <div>
+        <a href="homepage.html"><img src="/images/logonobg.png" alt="Logo" class="h-8"></a>
+    </div>
+    <div>
+        <ul class="flex space-x-6">
+          <li><a href="/home" class="text-gray-700 hover:text-gray-700">Home</a></li>
+          <li><a href="/about" class="text-gray-700 hover:text-blue-600">About</a></li>
+          <li><a href="/product" class="text-blue-600 hover:text-blue-600">Products</a></li>
+          <li><a href="/blog" class="text-gray-700 hover:text-blue-600">Blog</a></li>
+          <li><a href="/profile" class="text-gray-700 hover:text-blue-600">Profile</a></li>
+          <li><a href="/contactus" class="text-gray-700 hover:text-blue-600">Contact Us</a></li>
+        </ul>
+    </div>
+</nav>
+ 
+  <form method="POST" action="/listingcreation" enctype="multipart/form-data">
+   <h1 class="lab">Create Listing</h1>
+  
+    <div class="container">
+      <label for="Email"><b>Email</b></label>
+      <input type="Email" placeholder="Enter Email" name="email">
+      <br>
+      <label for="uname"><b>Product Name</b></label>
+      <input type="text" placeholder="Product Name" name="name">
+      <br>
+      <label for="price"><b>Product Price</b></label>
+      <input type="text" placeholder="Product Price" name="price">
+      <br>
+      <label for="textbox">Product Description</label>
+      <textarea id="textarea" name="description" rows="4" cols="50" class="texts"></textarea>
+      <label for="textbox">Address</label>
+      <textarea id="textarea" name="address" rows="4" cols="50" class="texts"></textarea>
+      <label for="image">Upload Image</label>
+      <input type="file" id="image" name="image" value="" required />
+      <br>
+      <button type="submit" class="btn"><strong>List</strong></button>
+      <label>
+    </div>
+  
+   
+  </form> 
+    
+</body>
+</html>

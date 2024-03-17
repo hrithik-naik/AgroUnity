@@ -1,0 +1,106 @@
+body {
+	margin: 0;
+	font-family: "Arial", sans-serif;
+}
+
+.navbar {
+	background-color: #4caf50; /* Green background color, you can change it */
+	padding: 15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.logo {
+	width: 50px; /* Adjust the logo width */
+	height: 50px; /* Adjust the logo height */
+	object-fit: cover;
+	margin-right: 15px;
+}
+
+.nav-items {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+
+.nav-item {
+	margin-right: 15px;
+}
+
+.nav-item:last-child {
+	margin-right: 0;
+}
+.lab{
+  align-items: center;
+  text-align: center;
+}
+.nav-link {
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+	font-size: 16px;
+}
+.container {
+	width:800px;
+	padding: 16px;
+	background-color: white;
+	margin: 0 auto;
+	margin-top: 100px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.btn {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #fff;
+        background-color:#4caf50 ;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Hover effect */
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+    /* Remove default button styles */
+    .btn:focus {
+        outline: none;
+    }
+
+    /* Adjust button size if needed */
+    .btn-large {
+        padding: 15px 30px;
+        font-size: 20px;
+    }
+    h1 {
+        color: #333; /* Change color as per your preference */
+        /* Change font size as per your preference */
+        text-align: center; /* Center align the heading */
+    }
+
+    /* Style for p tags inside profile-info */
+    .profile-info p {
+        margin: 5px 0; /* Add margin for spacing */
+        font-size: 21px; /* Change font size as per your preference */
+        color: #666; /* Change color as per your preference */
+    }
+
+    /* Style for strong tag */
+    .profile-info strong {
+        font-weight: bold; /* Make strong tags bold */
+    }
+.img{
+    width:100px;
+    height:100px;
+}
+
+.p{
+    text-align: center;
+}
