@@ -256,12 +256,13 @@ app.post('/profile', async (req, res) => {
             // Handle error appropriately, e.g., display an error page
             res.status(500).send("Internal Server Error");
         });
-		if(logout){
-			emails=null;
-			res.redirect("/login");
-
-		}
+		
 });
+app.get('/logout',(req,res)=>{
+	emails=null;
+	res.redirect("/login");
+	
+})
 
 app.get("/contactus",(req,res)=>{
 	res.render("contactus.ejs");
