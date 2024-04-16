@@ -81,6 +81,7 @@
         }
 
         .user-list {
+            margin-top:50px;
             list-style-type: none;
             padding: 0;
             display: flex;
@@ -134,6 +135,11 @@
             border-radius: 5px;
             
         }
+        .heading{
+            margin-top:120px;
+            font: 1em sans-serif;
+            font-size:x-large;
+        }
         
        
         .profile-image {
@@ -155,22 +161,6 @@
         }
     </style>
 </head>
-<% if (locals.showAlerts) { %>
-    <script>
-        window.onload = function() {
-          alert('Purchased the Listing');
-
-        };
-    </script>
-  <% } %>
-  <% if (locals.showAlert) { %>
-    <script>
-        window.onload = function() {
-          alert('Cant purchase ur own listing');
-
-        };
-    </script>
-  <% } %>
 <body>
     <nav class="flex items-center justify-between py-4 px-6 bg-white shadow fixed top-0 w-full z-10">
         <div>
@@ -180,53 +170,39 @@
             <ul class="flex space-x-6">
                 <li><a href="/home" class="text-gray-700 hover:text-gray-700">Home</a></li>
                 <li><a href="/about" class="text-gray-700 hover:text-blue-600">About</a></li>
-                <li><a href="/product" class="text-blue-600 hover:text-blue-600">Products</a></li>
+                <li><a href="/product" class="text-gray-700 hover:text-blue-600">Products</a></li>
                 <li><a href="/blog" class="text-gray-700 hover:text-blue-600">Blog</a></li>
-                <li><a href="/profile" class="text-gray-700 hover:text-blue-600">Profile</a></li>
+                <li><a href="/profile" class="text-blue-600 hover:text-blue-600">Profile</a></li>
                 <li><a href="/contactus" class="text-gray-700 hover:text-blue-600">Contact Us</a></li>
             </ul>
         </div>
     </nav>
-    <div class="button-container">
-        
-        <a href="/profile"><img src="/images/user.png" alt="Profile Image" class="profile-image"></a>
-    </div>
-    <div class="button-containers">
-        <a href="/listingcreation" class="Createbutton">+Create</a>
-    </div>
+    <h1 class="heading"><strong>Transactions</strong></h1>
+    <ul class="user-list" style:"margin-top:100px">
+        <% users.forEach(user => { %>
+            <li class="user-item">
+                
     
-    <div class="user-list-container">
-        <div class="search-bar">
-            <form method="POST" action="/product" style="width: 100%;">
-                <input type="text" class="search-input" placeholder="Search by product names" name="prod">
-                <button type="submit" class="search-button">Search</button>
-            </form>
-        </div>
-    </div>
-    
-
-        <h1>Current Listings</h1>
-
-        <ul class="user-list">
-            <% users.forEach(user => { %>
-                <li class="user-item">
-                    <a href="/product/<%= user._id %>">
-                        <div class="user-details">
-                            <strong>Email:</strong> <%= user.email %><br>
-                            <strong>Product Name:</strong> <%= user.productname %><br>
-                            <strong>Product Address:</strong> <%= user.productaddress %><br>
-                            <strong>Product Description:</strong> <%= user.productdescription %><br>
-                        </div>
-                        <% if (user.productimage && user.productimage.data) { %>
-                            <img src="data:image/<%= user.productimage.contentType %>;base64,<%= user.productimage.data.toString('base64') %>" class="user-image">
-                        <% } %>
-                    </a>
-                </li>
-            <% }) %>
-        </ul>
-    </div>
-   
-      
+                        <strong>BuyerEmail:</strong> <%= user.buyeremail %><br>
+                        <strong>SellerEmail:</strong> <%= user.selleremail %><br>
+                        <strong>Productid:</strong> <%= user.productid %><br>
+                        <strong>Product name:</strong> <%= user.productname %><br>
+                        <strong>Price:</strong> <%= user.price %><br>
+                        <strong>Rating:</strong> <%= user.rating %><br>
+                    
+                    
+                </a>
+            </li>
+        <% }) %>
+        <% userss.forEach(user => { %>
+            <li class="user-item">
+                <strong>BuyerEmail:</strong> <%= user.buyeremail %><br>
+                <strong>SellerEmail:</strong> <%= user.selleremail %><br>
+                <strong>Productid:</strong> <%= user.productid %><br>
+                <strong>Product name:</strong> <%= user.productname %><br>
+                <strong>Price:</strong> <%= user.price %><br>
+                <strong>Rating:</strong> <%= user.rating %><br>
+        </li>
+        <% }) %>
+    </ul>
 </body>
-
-</html>

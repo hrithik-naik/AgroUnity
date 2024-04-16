@@ -11,6 +11,7 @@ import path from "path";
 import list from "./listingmodels.js";
 import contact from"./contactmodel.js";
 import dotenv from "dotenv";
+import buy from "./buymodel.js";
 dotenv.config({ path: './.env' });
 var i = 1;
 var emails;
@@ -84,6 +85,7 @@ app.get("/listingcreation", async (req, res) => {
 });
 app.post("/listingcreation", upload.single("image"), async(req, res, next) => {
 	
+	
 	console.log(i);
 	var obj = {
 		email: req.body.email,
@@ -102,8 +104,8 @@ app.post("/listingcreation", upload.single("image"), async(req, res, next) => {
 	};
 	list.create(obj);
 	if(obj!=null){
-	const users = await list.find();
-	console.log(users); 
+	
+	
 	res.redirect("/product/");
 	}
 });
@@ -126,6 +128,40 @@ app.get("/product/:id", (req, res) => {
 			res.status(500).send("Internal Server Error");
 		});
 });
+app.post("/product/:id", async(req,res)=>{
+	if (emails == null) {
+		res.render("login.ejs");
+	  } else {
+		try {
+		  const users = await list.find();
+		  const prodid = req.params.id;
+		  
+		  const product = await list.findById(prodid);
+		  if (!product) {
+			return res.status(404).send("Product not found");
+		  }
+	  
+		  const obj = {
+			buyeremail: emails,
+			selleremail: product.email,
+			productid: product._id,
+			productname: product.productname,
+			price: product.price,
+			rating: product.rating
+		  };
+	  
+		  await buy.create(obj);
+		  const deleted = await list.findByIdAndDelete(prodid);
+		  if (deleted) {
+			const updatedUsers = await list.find();
+			res.render("users.ejs", { users: updatedUsers, showAlerts: true });
+		  }
+		} catch (error) {
+		  console.error("Error:", error);
+		  res.status(500).send("Internal Server Error");
+		}
+	  }}
+	  )
 
 app.get("/signup", (req, res) => {
 	res.render("signup.ejs");
@@ -262,6 +298,12 @@ app.get('/logout',(req,res)=>{
 	emails=null;
 	res.redirect("/login");
 	
+})
+app.get('/transaction',async (req,res)=>{
+	let users;
+	users=await buy.find({buyeremail:emails});
+	let userss=await buy.find({selleremail:emails});
+	res.render("trans.ejs",{users,userss});
 })
 
 app.get("/contactus",(req,res)=>{

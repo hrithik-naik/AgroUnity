@@ -77,6 +77,18 @@
             justify-content: space-between;
             width: 100%;
         }
+        .productdetails{
+            padding-left:25px;
+            display: flex;
+            flex-direction: column;
+            width:700px;
+            align-items:left;
+            overflow-wrap:anywhere;
+        }
+        .imgs{
+            padding-left:25px;
+        }
+        
     </style>
 </head>
 
@@ -129,7 +141,7 @@
         <p>Your Listings</p>
         <% product.forEach(prod => { %>
             <a href="/profile/<%= prod._id %>">
-            <div class="product-details">
+            <div class="productdetails">
                 <p><strong>ID:</strong> <%= prod._id %></p>
                 <p><strong>Email:</strong> <%= prod.email %></p>
                 <p><strong>Product Name:</strong> <%= prod.productname %></p>
@@ -138,10 +150,12 @@
                 <p><strong>Price:</strong> <%= prod.price %></p>
             </div>
             <% if (prod.productimage && prod.productimage.data) { %>
-                <img src="data:image/<%= prod.productimage.contentType %>;base64,<%= prod.productimage.data.toString('base64') %>" alt="Product Image" width="100px" height="100px">
+                <img src="data:image/<%= prod.productimage.contentType %>;base64,<%= prod.productimage.data.toString('base64') %>" alt="Product Image" width="100px" height="100px" class="imgs">
             <% } %>
+            <br>
         <% }); %>
         </a>
+        <a href="/transaction"><button class="btn">History</button></a>
     </div>
 </body>
 </html>
