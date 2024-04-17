@@ -81,6 +81,9 @@ app.post("/product", async (req, res) => {
 });
 
 app.get("/listingcreation", async (req, res) => {
+	if (emails == null) {
+		res.render("login.ejs");
+	  }
 	res.render("listingcreation.ejs");
 });
 app.post("/listingcreation", upload.single("image"), async(req, res, next) => {
